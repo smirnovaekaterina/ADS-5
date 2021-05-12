@@ -44,22 +44,22 @@ class TPQueue {
         }
       } else {
         cur = create(data, nullptr);
-        cur->next = head;
-        head->prev = cur;
-        head = mom;
+        cur->next = first;
+        first->prev = cur;
+        first = cur;
       }
     } else {
-      head = create(data, nullptr);
-      tail = head;
+      first = create(data, nullptr);
+      last = first;
     }
   }
   T pop() {
-    assert(head);
-    ITEM* tmp = head->next;
-    T data = head->data;
+    assert(first);
+    ITEM* tmp = first->next;
+    T data = first->data;
     if (tmp) tmp->prev = nullptr;
-    delete head;
-    head = tmp;
+    delete first;
+    first = tmp;
     return data;
   }
 };
